@@ -12,7 +12,6 @@ import {
 } from '@/helpers/validations';
 
 interface userType {
-  name: string;
   email: string;
   password: string;
 }
@@ -22,13 +21,17 @@ function Login() {
   const [loading, setLoading] = React.useState(false);
 
   const onLogin = async (values: userType) => {
-    console.log(values);
     try {
       setLoading(true);
-      await axios.post('/api/auth/register', values);
-      router.push('/login');
-    } catch (error: any) {
-      // message.error(error.response.data.message);
+      await axios.post('/api/auth/login', values);
+      message.success('Logged in');
+      router.push('/');
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response) {
+        message.error(error.response.data.message);
+      } else {
+        message.error('Failed to login');
+      }
     } finally {
       setLoading(false);
     }
