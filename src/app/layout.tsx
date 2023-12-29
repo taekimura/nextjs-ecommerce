@@ -1,5 +1,13 @@
 import type { Metadata } from 'next';
+import { Open_Sans } from 'next/font/google';
+import ThemeProvider from '@/providers/ThemeProvider';
+import { RootStyleRegistry } from '@/providers/RootStyleRegistry';
 import './globals.css';
+
+export const openSans = Open_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500']
+});
 
 export const metadata: Metadata = {
   title: 'SOZAI',
@@ -13,7 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body>{children}</body>
+      <body className={openSans.className} suppressHydrationWarning={true}>
+        <RootStyleRegistry>
+          <ThemeProvider>{children}</ThemeProvider>
+        </RootStyleRegistry>
+      </body>
     </html>
   );
 }
