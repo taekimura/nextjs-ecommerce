@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import ThemeProvider from '@/providers/ThemeProvider';
 import { RootStyleRegistry } from '@/providers/RootStyleRegistry';
+
 import './globals.css';
 
 export const openSans = Open_Sans({

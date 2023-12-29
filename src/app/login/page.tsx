@@ -4,7 +4,12 @@ import { Button, Form, Input, message } from 'antd';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { getInputFieldRule } from '@/helpers/validations';
+import {
+  getInputFieldRule,
+  EMAIL_REGEX,
+  PASSWORD_REGEX,
+  passwordRule
+} from '@/helpers/validations';
 
 interface userType {
   name: string;
@@ -21,7 +26,6 @@ function Login() {
     try {
       setLoading(true);
       await axios.post('/api/auth/register', values);
-      // message.success('Registration successful , please login to continue');
       router.push('/login');
     } catch (error: any) {
       // message.error(error.response.data.message);
@@ -38,7 +42,7 @@ function Login() {
 
       <div className='flex items-center justify-center h-full'>
         <Form
-          className='w-[400px] flex flex-col gap-1'
+          className='w-[400px] flex flex-col'
           layout='vertical'
           requiredMark={false}
           onFinish={onLogin}
@@ -47,10 +51,7 @@ function Login() {
           <Form.Item
             name='email'
             label='Email'
-            rules={getInputFieldRule(
-              'Please enter a valid email',
-              /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
-            )}
+            rules={getInputFieldRule('Please enter a valid email', EMAIL_REGEX)}
           >
             <Input size='large' />
           </Form.Item>
@@ -58,8 +59,8 @@ function Login() {
             name='password'
             label='Password'
             rules={getInputFieldRule(
-              'Please enter a valid password(Minimum eight characters, at least one letter and one number)',
-              /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+              `Please enter a valid password (${passwordRule})`,
+              PASSWORD_REGEX
             )}
           >
             <Input.Password size='large' />
