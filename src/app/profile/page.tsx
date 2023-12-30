@@ -4,8 +4,8 @@ import { Tabs, TabsProps } from 'antd';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { useRouter, useSearchParams } from 'next/navigation';
-import CategoriesList from './_components/CategoryList';
-// import ProductsList from './components/ProductsList';
+import CategoriesList from './_components/CategoriesList';
+import ProductsList from './_components/ProductsList';
 // import UsersOrdersList from './components/UsersOrdersList';
 // import AdminOrdersList from './components/AdminOrdersList';
 // import PersonalInfo from './components/PersonalInfo';
@@ -22,7 +22,7 @@ function Profile() {
     {
       key: '1',
       label: 'Products',
-      children: 'product'
+      children: <ProductsList />
     },
     {
       key: '2',

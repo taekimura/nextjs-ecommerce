@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Modal, message, Input } from 'antd';
 import { getInputFieldRule } from '@/lib/validations';
 import axios from 'axios';
-import { Category } from './CategoryList';
+import { Category } from './CategoriesList';
 
 type categoryType = {
   name: string;
