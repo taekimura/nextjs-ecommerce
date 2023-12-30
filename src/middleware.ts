@@ -11,7 +11,7 @@ export async function middleware(request: NextRequest) {
 
   // if the token is not valid and the route is not public, redirect to login
   const token = request.cookies.get('token')?.value || '';
-  if (!token && !isPublicRoute) {
+  if (!token && !isPublicRoute && request.nextUrl.pathname !== '/') {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 

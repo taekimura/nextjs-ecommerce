@@ -9,7 +9,7 @@ import {
   EMAIL_REGEX,
   PASSWORD_REGEX,
   passwordRule
-} from '@/helpers/validations';
+} from '@/lib/validations';
 
 interface userType {
   email: string;
@@ -40,7 +40,12 @@ function Register() {
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 min-h-screen'>
       <div className='h-full bg-primary hidden md:flex items-center justify-center'>
-        <h1 className='text-5xl font-light text-white'>SOZAI</h1>
+        <h1
+          className='text-5xl font-light text-white cursor-pointer'
+          onClick={() => router.push('/')}
+        >
+          SOZAI
+        </h1>
       </div>
 
       <div className='flex items-center justify-center h-full'>

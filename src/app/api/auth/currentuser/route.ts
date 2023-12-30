@@ -1,14 +1,13 @@
 import { connectDB } from '@/configs/dbConfig';
-import { validateJWT } from '@/helpers/validateJWT';
+import { validateJWT } from '@/lib/validateJWT';
 import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/models/User';
-
 connectDB();
 
 export async function GET(request: NextRequest) {
   try {
     const userId = await validateJWT(request);
-    const user = await User.findById(userId).select('-password');
+    const user = await User.findById(userId).select('-password'); //Do not show password
     return NextResponse.json({
       data: user
     });

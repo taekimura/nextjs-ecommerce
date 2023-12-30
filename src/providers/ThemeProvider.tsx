@@ -1,6 +1,5 @@
 import React from 'react';
 import { ConfigProvider } from 'antd';
-import { openSans } from '@/app/layout';
 
 function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
