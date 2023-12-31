@@ -20,8 +20,6 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
   const isPrivatePage = pathname !== '/login' && pathname !== '/register';
   const dispatch = useDispatch();
 
-  console.log(currentUser);
-
   const getCurrentUser = async () => {
     try {
       setLoading(true);

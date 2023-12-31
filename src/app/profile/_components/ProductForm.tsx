@@ -6,15 +6,15 @@ import axios from 'axios';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Category } from '@/app/profile/_components/CategoriesList';
-import { ProductType } from '@/app/profile/add_product/page';
+import { ProductType, Product } from '@/app/profile/_components/ProductsList';
 
 type ProductFormProps = {
   setSelectedFiles: React.Dispatch<React.SetStateAction<File[]>>;
   loading: boolean;
   onSave: (values: ProductType) => Promise<void>;
-  initialValues?: any;
-  existingImages?: any;
-  setExistingImages?: any;
+  initialValues?: Product;
+  existingImages?: string[];
+  setExistingImages?: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 function ProductForm({
@@ -73,7 +73,9 @@ function ProductForm({
         <Form.Item
           label='Price'
           name='price'
-          rules={getInputFieldRule('Price is required')}
+          rules={
+            !initialValues ? getInputFieldRule('Price is required') : undefined
+          }
         >
           <Input type='number' size='large' min={0} />
         </Form.Item>
@@ -85,34 +87,35 @@ function ProductForm({
         >
           <Select
             size='large'
-            defaultValue=''
             options={categories.map((c: Category) => {
               return { label: c.name, value: c._id };
             })}
           />
         </Form.Item>
-
         <Form.Item
           label='Count In Stock'
           name='countInStock'
-          rules={getInputFieldRule('Stock is required')}
+          rules={
+            !initialValues ? getInputFieldRule('Stock is required') : undefined
+          }
         >
           <Input type='number' size='large' min={0} />
         </Form.Item>
 
-        <div className='col-span-3 flex gap-5'>
+        <div className='col-span-3 flex gap-2'>
           {existingImages.map((image: string) => (
             <div
               key={image}
-              className='border border-solid p-3 border-gray-300'
+              className='rounded-lg border border-solid p-3 border-gray-300 '
             >
-              <img src={image} alt='product' className='w-20 h-20' />
+              <img src={image} alt='product' className='w-20 h-auto' />
               <h1
-                className='cursor-pointer underline text-sm'
+                className='cursor-pointer underline text-xs'
                 onClick={() => {
-                  setExistingImages((prev: any) =>
-                    prev.filter((i: any) => i !== image)
-                  );
+                  setExistingImages &&
+                    setExistingImages((prev: string[]) =>
+                      prev.filter((i: string) => i !== image)
+                    );
                 }}
               >
                 Remove

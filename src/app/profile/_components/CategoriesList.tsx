@@ -21,7 +21,7 @@ export type Category = {
 function CategoriesList() {
   const [loading, setLoading] = React.useState(false);
   const [loadingForDelete, setLoadingForDelete] = React.useState(false);
-  const [categories, setCategories] = React.useState([]);
+  const [categories, setCategories] = React.useState<Category[]>([]);
   const [showCategoryForm, setShowCategoryForm] = React.useState(false);
   const [selectedCategory, setSelectedCategory] =
     React.useState<Category | null>(null);

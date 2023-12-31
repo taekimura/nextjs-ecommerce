@@ -6,12 +6,36 @@ import axios from 'axios';
 import moment from 'moment';
 import { useRouter } from 'next/navigation';
 
+export type ProductType = {
+  name: string;
+  description: string;
+  price: string;
+  category: string;
+  countInStock: string;
+  images: string[] | undefined;
+};
+
+export type Product = ProductType & {
+  _id: string;
+  features: string[];
+  rating: number;
+  createdBy: {
+    _id: string;
+    name: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
 function ProductsList() {
   const router = useRouter();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [deleteLoading, setDeleteLoading] = React.useState<boolean>(false);
-  const [selectedProduct, setSelectedProduct] = React.useState<any>(null); // [1]
-  const [products, setProducts] = React.useState([]);
+  const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(
+    null
+  );
+  const [products, setProducts] = React.useState<Product[]>([]);
 
   const getProducts = async () => {
     try {
@@ -37,8 +61,10 @@ function ProductsList() {
       await axios.delete(`/api/products/${productId}`);
       message.success('Product deleted successfully');
       getProducts();
-    } catch (error: any) {
-      message.error(error.message);
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response) {
+        message.error(error.response.data.message || error.message);
+      }
     } finally {
       setDeleteLoading(false);
     }
@@ -48,13 +74,17 @@ function ProductsList() {
     {
       title: 'Product',
       dataIndex: 'name',
-      render: (text: string, record: any) => (
-        <img
-          src={record.images[0]}
-          alt={text}
-          className='w-20 h-20 object-cover rounded-full'
-        />
-      )
+      render: (text: string, record: Product) => {
+        if (record.images) {
+          return (
+            <img
+              src={record.images[0]}
+              alt={text}
+              className='w-20 h-20 object-cover rounded-full'
+            />
+          );
+        }
+      }
     },
     {
       title: 'Name',
@@ -63,43 +93,41 @@ function ProductsList() {
     {
       title: 'Created By',
       dataIndex: 'createdBy',
-      render: (createdBy: any) => createdBy.name
+      render: (createdBy: { _id: string; name: string }) => createdBy.name
     },
     {
       title: 'Created At',
       dataIndex: 'createdAt',
-      render: (createdAt: any) =>
+      render: (createdAt: string) =>
         moment(createdAt).format('DD MMM YYYY hh:mm A')
     },
     {
       title: 'Action',
       dataIndex: 'action',
-      render: (action: any, params: any) => {
-        return (
-          <div className='flex gap-3 items-center'>
-            <Button
-              type='default'
-              className='btn-small'
-              onClick={() => {
-                setSelectedProduct(params);
-                deleteProduct(params._id);
-              }}
-              loading={deleteLoading && selectedProduct?._id === params._id}
-            >
-              Delete
-            </Button>
-            <Button
-              type='primary'
-              className='btn-small'
-              onClick={() => {
-                router.push(`/profile/edit_product/${params._id}`);
-              }}
-            >
-              Edit
-            </Button>
-          </div>
-        );
-      }
+      render: (_: string, params: Product) => (
+        <div className='flex gap-3 items-center'>
+          <Button
+            type='default'
+            className='btn-small'
+            onClick={() => {
+              setSelectedProduct(params);
+              deleteProduct(params._id);
+            }}
+            loading={deleteLoading && selectedProduct?._id === params._id}
+          >
+            Delete
+          </Button>
+          <Button
+            type='primary'
+            className='btn-small'
+            onClick={() => {
+              router.push(`/profile/edit_product/${params._id}`);
+            }}
+          >
+            Edit
+          </Button>
+        </div>
+      )
     }
   ];
 
@@ -120,6 +148,7 @@ function ProductsList() {
           dataSource={products}
           loading={loading}
           pagination={false}
+          rowKey='name'
         />
       </div>
     </div>

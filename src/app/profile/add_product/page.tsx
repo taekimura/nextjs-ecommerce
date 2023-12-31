@@ -1,19 +1,11 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import ProductForm from '../_components/ProductForm';
 import axios from 'axios';
 import { message } from 'antd';
 import { useRouter } from 'next/navigation';
 import { uploadImagesAndReturnUrls } from '@/lib/imageHandling';
-
-export type ProductType = {
-  name: string;
-  description: string;
-  price: string;
-  category: string;
-  countInStock: string;
-  images: string[] | undefined;
-};
+import { ProductType } from '../_components/ProductsList';
 
 function AddProduct() {
   const [selectedFiles = [], setSelectedFiles] = React.useState<File[]>([]);
@@ -38,7 +30,7 @@ function AddProduct() {
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     console.log('selectedFiles', selectedFiles);
   }, [selectedFiles]);
 
