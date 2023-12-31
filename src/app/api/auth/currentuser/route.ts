@@ -1,6 +1,7 @@
 import { connectDB } from '@/configs/dbConfig';
 import { validateJWT } from '@/lib/validateJWT';
 import { NextRequest, NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 import { User } from '@/models/User';
 connectDB();
 

@@ -1,12 +1,12 @@
 'use client';
 import React from 'react';
-import ProductForm from '../../_components/ProductForm';
 import axios from 'axios';
 import { message } from 'antd';
-import Loader from '@/components/Loader';
-import { uploadImagesAndReturnUrls } from '@/lib/imageHandling';
 import { useRouter } from 'next/navigation';
-import { ProductType, Product } from '../../_components/ProductsList';
+import Loader from '@/components/Loader';
+import ProductForm from '@/components/profile/ProductForm';
+import { uploadImagesAndReturnUrls } from '@/lib/imageHandling';
+import { ProductType, Product } from '@/components/profile/ProductsList';
 
 function EditProduct({ params }: { params: { productid: string } }) {
   const [existingImages = [], setExistingImages] = React.useState<string[]>([]);

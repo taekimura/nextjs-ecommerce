@@ -17,6 +17,7 @@ body {
 
 button {
   box-shadow: none !important;
+  border-radius: 0 !important;
 }
 
 button:hover {

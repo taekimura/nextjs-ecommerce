@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
-import ProductForm from '../_components/ProductForm';
+import ProductForm from '../../../components/profile/ProductForm';
 import axios from 'axios';
 import { message } from 'antd';
 import { useRouter } from 'next/navigation';
 import { uploadImagesAndReturnUrls } from '@/lib/imageHandling';
-import { ProductType } from '../_components/ProductsList';
+import { ProductType } from '@/components/profile/ProductsList';
 
 function AddProduct() {
   const [selectedFiles = [], setSelectedFiles] = React.useState<File[]>([]);

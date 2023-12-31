@@ -5,8 +5,8 @@ import { PlusOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { Category } from '@/app/profile/_components/CategoriesList';
-import { ProductType, Product } from '@/app/profile/_components/ProductsList';
+import { Category } from '@/components/profile/CategoriesList';
+import { ProductType, Product } from '@/components/profile/ProductsList';
 
 type ProductFormProps = {
   setSelectedFiles: React.Dispatch<React.SetStateAction<File[]>>;
