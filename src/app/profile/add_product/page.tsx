@@ -5,14 +5,14 @@ import axios from 'axios';
 import { message } from 'antd';
 import { useRouter } from 'next/navigation';
 import { uploadImagesAndReturnUrls } from '@/lib/imageHandling';
-import { ProductType } from '@/components/profile/ProductsList';
+import { ProductPayload } from '@/types';
 
 function AddProduct() {
   const [selectedFiles = [], setSelectedFiles] = React.useState<File[]>([]);
   const [loading = false, setLoading] = React.useState<boolean>(false);
   const router = useRouter();
 
-  const onSave = async (values: ProductType) => {
+  const onSave = async (values: ProductPayload) => {
     try {
       setLoading(true);
       const imagesUrls = await uploadImagesAndReturnUrls(selectedFiles);

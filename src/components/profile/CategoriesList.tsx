@@ -4,19 +4,7 @@ import { Button, Table, message } from 'antd';
 import CategoryForm from './CategoryForm';
 import axios from 'axios';
 import moment from 'moment';
-
-export type Category = {
-  _id: string;
-  name: string;
-  description: string;
-  createdBy: {
-    _id: string;
-    name: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-};
+import { Category } from '@/types';
 
 function CategoriesList() {
   const [loading, setLoading] = React.useState(false);

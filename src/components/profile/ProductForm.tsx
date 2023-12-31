@@ -5,13 +5,12 @@ import { PlusOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { Category } from '@/components/profile/CategoriesList';
-import { ProductType, Product } from '@/components/profile/ProductsList';
+import { Category, Product, ProductPayload } from '@/types';
 
 type ProductFormProps = {
   setSelectedFiles: React.Dispatch<React.SetStateAction<File[]>>;
   loading: boolean;
-  onSave: (values: ProductType) => Promise<void>;
+  onSave: (values: ProductPayload) => Promise<void>;
   initialValues?: Product;
   existingImages?: string[];
   setExistingImages?: React.Dispatch<React.SetStateAction<string[]>>;

@@ -3,9 +3,10 @@ import { Button, message } from 'antd';
 import { useDispatch } from 'react-redux';
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { Product } from '@/types';
 // import { AddProductToCart } from '@/redux/cartSlice';
 
-function ProductActionButtons({ product }: { product: any }) {
+function ProductActionButtons({ product }: { product: Product }) {
   const router = useRouter();
   const dispatch = useDispatch();
   return (

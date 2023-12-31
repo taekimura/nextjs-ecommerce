@@ -2,11 +2,11 @@ import axios from 'axios';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
-import AddToCartButton from '@/components/AddToCartButton';
-import Rate from '@/components/Rate';
+import AddToCartButton from '@/components/products/AddToCartButton';
+import Rate from '@/components/products/Rate';
 import { formatPrice } from '../lib/utils';
+import { Product } from '@/types';
 // import Filters from '@/components/Filters';
-// import { ProductInterface } from '@/interfaces';
 
 async function getProducts(searchParams: any) {
   console.log(searchParams);
@@ -37,7 +37,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
     <div>
       {/* <Filters /> */}
       <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-5 mt-3'>
-        {products.map((product: any) => (
+        {products.map((product: Product) => (
           <div
             key={product._id}
             className='px-4 py-4 flex flex-col gap-1 border border-solid border-gray-300'

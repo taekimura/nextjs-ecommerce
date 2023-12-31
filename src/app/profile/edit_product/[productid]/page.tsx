@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Loader from '@/components/Loader';
 import ProductForm from '@/components/profile/ProductForm';
 import { uploadImagesAndReturnUrls } from '@/lib/imageHandling';
-import { ProductType, Product } from '@/components/profile/ProductsList';
+import { ProductPayload, Product } from '@/types';
 
 function EditProduct({ params }: { params: { productid: string } }) {
   const [existingImages = [], setExistingImages] = React.useState<string[]>([]);
@@ -17,7 +17,7 @@ function EditProduct({ params }: { params: { productid: string } }) {
   const [product, setProduct] = React.useState<Product | null>(null);
   const router = useRouter();
 
-  const onSave = async (values: ProductType) => {
+  const onSave = async (values: ProductPayload) => {
     try {
       setLoading(true);
       const newImages = (await uploadImagesAndReturnUrls(

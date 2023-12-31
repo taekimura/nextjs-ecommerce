@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import { cookies } from 'next/headers';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import axios from 'axios';
@@ -10,11 +9,13 @@ import Loader from '@/components/Loader';
 import { SetCurrentUser } from '@/redux/userSlice';
 import { RootState } from '@/redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-// import { CartState } from '@/redux/cartSlice';
+import { CartState } from '@/redux/cartSlice';
 
 function LayoutProvider({ children }: { children: React.ReactNode }) {
   const { currentUser } = useSelector((state: RootState) => state.user);
-  // const { cartItems }: CartState = useSelector((state: RootState) => state.cart);
+  const { cartItems }: CartState = useSelector(
+    (state: RootState) => state.cart
+  );
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
   const pathname = usePathname();
@@ -42,10 +43,9 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPrivatePage, pathname]);
 
-  // React.useEffect(() => {
-  //   // when the cartItems changes, we will save the cartItems to the localStorage
-  //   localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  // }, [cartItems]);
+  React.useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const onLogout = async () => {
     try {
@@ -100,7 +100,9 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
               {currentUser._id ? (
                 <>
                   <Badge
-                    // count={cartItems.length}
+                    count={cartItems.reduce((sum, element) => {
+                      return sum + element.quantity;
+                    }, 0)}
                     className='cursor-pointer'
                   >
                     <i

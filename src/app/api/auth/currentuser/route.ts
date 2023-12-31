@@ -14,6 +14,9 @@ export async function GET(request: NextRequest) {
     });
   } catch (error: unknown) {
     if (error instanceof Error) {
+      if (error.message === 'jwt expired') {
+        cookies().delete('token');
+      }
       return NextResponse.json(
         {
           message: error.message

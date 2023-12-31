@@ -2,7 +2,18 @@
 const nextConfig = {
   transpilePackages: ['antd-mobile'],
   images: {
-    domains: ['localhost', 'firebasestorage.googleapis.com']
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+        pathname: '**'
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        pathname: '**'
+      }
+    ]
   }
 };
 

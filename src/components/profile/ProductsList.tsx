@@ -5,28 +5,7 @@ import { Button, Table, message } from 'antd';
 import axios from 'axios';
 import moment from 'moment';
 import { useRouter } from 'next/navigation';
-
-export type ProductType = {
-  name: string;
-  description: string;
-  price: string;
-  category: string;
-  countInStock: string;
-  images: string[] | undefined;
-};
-
-export type Product = ProductType & {
-  _id: string;
-  features: string[];
-  rating: number;
-  createdBy: {
-    _id: string;
-    name: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-};
+import { Product } from '@/types';
 
 function ProductsList() {
   const router = useRouter();

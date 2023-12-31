@@ -2,12 +2,7 @@ import React from 'react';
 import { Form, Modal, message, Input } from 'antd';
 import { getInputFieldRule } from '@/lib/validations';
 import axios from 'axios';
-import { Category } from './CategoriesList';
-
-type categoryType = {
-  name: string;
-  description: string;
-};
+import { Category, CategoryPayload } from '@/types';
 
 type CategoryFormProps = {
   showCategoryForm: boolean;
@@ -27,7 +22,7 @@ function CategoryForm({
   const [form] = Form.useForm();
   const [loading, setLoading] = React.useState(false);
 
-  const onFinish = async (values: categoryType) => {
+  const onFinish = async (values: CategoryPayload) => {
     try {
       setLoading(true);
       if (selectedCategory) {

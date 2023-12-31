@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import axios from 'axios';
 import ProductImages from '@/components/products/ProductImages';
 import ProductActionButtons from '@/components/products/ProductActionButton';
-import Rate from '@/components/Rate';
+import Rate from '@/components/products/Rate';
 import { formatPrice } from '@/lib/utils';
 // import ProductReviews from './ProductReviews';
 
