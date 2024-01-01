@@ -94,19 +94,20 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
               className='flex gap-2 cursor-pointer'
               onClick={() => router.push('/')}
             >
-              <h3 className='font-light text-white cursor-pointer'>SOZAI</h3>
+              <h3 className='font-light text-white cursor-pointer'>SOZAI.</h3>
             </div>
             <div className='flex gap-5 items-center'>
               {currentUser._id ? (
                 <>
                   <Badge
-                    count={cartItems.reduce((sum, element) => {
-                      return sum + element.quantity;
+                    style={{ boxShadow: 'none' }}
+                    count={cartItems.reduce((acc, item) => {
+                      return acc + item.quantity;
                     }, 0)}
-                    className='cursor-pointer'
+                    className='cursor-pointer shadow-none'
                   >
                     <i
-                      className='ri-shopping-cart-line text-white text-2xl'
+                      className='ri-shopping-cart-line text-white text-3xl'
                       onClick={() => router.push('/cart')}
                     ></i>
                   </Badge>

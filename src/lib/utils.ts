@@ -4,3 +4,6 @@ export const formatPrice = (price: number) => {
     currency: 'CAD'
   }).format(price);
 };
+
+export const capitalize = (s: string) =>
+  s[0].toUpperCase() + s.slice(1).replace('_', ' ') || '';

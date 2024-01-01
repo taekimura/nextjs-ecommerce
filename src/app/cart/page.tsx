@@ -12,8 +12,11 @@ import Checkout from '@/components/checkout/Checkout';
 import { RootState } from '@/redux/store';
 import { formatPrice } from '@/lib/utils';
 
+const ShippingFee = 50;
+
 function Cart() {
   const [showCheckoutModal, setShowCheckoutModal] = React.useState(false);
+  const [isClient, setIsClient] = React.useState(false);
   const { cartItems }: CartState = useSelector(
     (state: RootState) => state.cart
   );
@@ -21,11 +24,16 @@ function Cart() {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-  const total = subTotal + 50;
+  const total = subTotal + ShippingFee;
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className='mt-10'>
-      {cartItems.length > 0 ? (
+      {isClient && cartItems.length > 0 ? (
         <div className='grid grid-cols-1 xl:grid-cols-3 text-gray-700 gap-10'>
           <div className='col-span-2 flex flex-col gap-5'>
             <span className='text-2xl font-semibold'>My Cart</span>
@@ -127,7 +135,7 @@ function Cart() {
 
               <div className='flex justify-between'>
                 <span>Shipping Fee</span>
-                <span>{formatPrice(50)}</span>
+                <span>{formatPrice(ShippingFee)}</span>
               </div>
 
               <hr className='border border-gray-200 border-dashed' />
@@ -139,6 +147,7 @@ function Cart() {
 
               <Button
                 block
+                size='large'
                 type='primary'
                 className='mt-10'
                 onClick={() => {

@@ -6,8 +6,8 @@ import { RootState } from '@/redux/store';
 import { useRouter, useSearchParams } from 'next/navigation';
 import CategoriesList from '@/components/profile/CategoriesList';
 import ProductsList from '@/components/profile/ProductsList';
-// import UsersOrdersList from './components/UsersOrdersList';
-// import AdminOrdersList from './components/AdminOrdersList';
+import UserOrderList from '@/components/profile/UserOrderList';
+import AdminOrderList from '@/components/profile/AdminOrderList';
 // import PersonalInfo from './components/PersonalInfo';
 // import UsersList from './components/UsersList';
 
@@ -32,7 +32,7 @@ function Profile() {
     {
       key: '3',
       label: 'Orders',
-      children: 'admin order'
+      children: <AdminOrderList />
     },
     {
       key: '4',
@@ -50,7 +50,7 @@ function Profile() {
     {
       key: '1',
       label: 'Orders',
-      children: 'user order'
+      children: <UserOrderList />
     },
     {
       key: '2',

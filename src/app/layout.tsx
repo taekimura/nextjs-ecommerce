@@ -12,7 +12,7 @@ export const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'SOZAI',
+  title: 'SOZAI.',
   description: 'E-commerce site built with Next.js and Typescript.'
 };
 

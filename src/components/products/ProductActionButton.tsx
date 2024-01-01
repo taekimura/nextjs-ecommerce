@@ -4,23 +4,19 @@ import { useDispatch } from 'react-redux';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Product } from '@/types';
-// import { AddProductToCart } from '@/redux/cartSlice';
+import { AddProductToCart } from '@/redux/cartSlice';
 
 function ProductActionButtons({ product }: { product: Product }) {
   const router = useRouter();
   const dispatch = useDispatch();
+
   return (
     <div className='flex gap-5 mt-5'>
       <Button
         type='default'
         disabled={product.countInStock === 0}
         onClick={() => {
-          // dispatch(
-          //   AddProductToCart({
-          //     ...product,
-          //     quantity: 1
-          //   })
-          // );
+          dispatch(AddProductToCart(product));
           message.success('Added to cart');
         }}
       >
@@ -30,12 +26,7 @@ function ProductActionButtons({ product }: { product: Product }) {
         type='primary'
         disabled={product.countInStock === 0}
         onClick={() => {
-          // dispatch(
-          //   AddProductToCart({
-          //     ...product,
-          //     quantity: 1
-          //   })
-          // );
+          dispatch(AddProductToCart(product));
           message.success('Added to cart');
           router.push('/cart');
         }}

@@ -1,12 +1,12 @@
 'use client';
 import React from 'react';
 import { Button, message } from 'antd';
-// import {
-//   PaymentElement,
-//   AddressElement,
-//   useElements,
-//   useStripe
-// } from '@stripe/react-stripe-js';
+import {
+  PaymentElement,
+  AddressElement,
+  useElements,
+  useStripe
+} from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { CartState, ClearCart } from '@/redux/cartSlice';
@@ -23,50 +23,51 @@ function CheckoutForm({
   setShowCheckoutModal: (showCheckoutModal: boolean) => void;
 }) {
   const [loading, setLoading] = React.useState(false);
-  // const elements = useElements();
-  // const stripe = useStripe();
+  const elements = useElements();
+  const stripe = useStripe();
   const { cartItems }: CartState = useSelector(
     (state: RootState) => state.cart
   );
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
       setLoading(true);
       event.preventDefault();
-      // if (!stripe || !elements) {
-      //   throw new Error("Stripe.js hasn't loaded yet.");
-      // }
-      // const result = await stripe.confirmPayment({
-      //   elements,
-      //   confirmParams: {
-      //     return_url: 'http://localhost:3000/cart'
-      //   },
-      //   redirect: 'if_required'
-      // });
+      if (!stripe || !elements) {
+        throw new Error("Stripe.js hasn't loaded yet.");
+      }
+      const result = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: 'http://localhost:3000/cart'
+        },
+        redirect: 'if_required'
+      });
 
-      // if (result.error) {
-      //   throw result.error;
-      // }
+      if (result.error) {
+        throw result.error;
+      }
 
       message.success('Payment successful');
 
-      // save order to database
       const orderPayload = {
         items: cartItems,
         paymentStatus: 'paid',
         orderStatus: 'order placed',
-        // shippingAddress: result.paymentIntent.shipping,
-        // transactionId: result.paymentIntent.id,
+        shippingAddress: result.paymentIntent.shipping,
+        transactionId: result.paymentIntent.id,
         total
       };
       await axios.post('/api/orders/place_order', orderPayload);
       dispatch(ClearCart());
       message.success('Order placed successfully');
       router.push('/profile');
-    } catch (error: any) {
-      message.error(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        message.error(error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -76,13 +77,13 @@ function CheckoutForm({
       {loading && <Loader />}
       <form onSubmit={handleSubmit}>
         <div className='h-[350px] overflow-y-scroll pr-5'>
-          {/* <PaymentElement />
+          <PaymentElement />
           <AddressElement
             options={{
-              allowedCountries: ['US'],
+              allowedCountries: ['CA'],
               mode: 'shipping'
             }}
-          /> */}
+          />
         </div>
         <div className='flex gap-5'>
           <Button

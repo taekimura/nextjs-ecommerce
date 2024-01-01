@@ -43,7 +43,7 @@ function Login() {
           className='text-5xl font-light text-white cursor-pointer'
           onClick={() => router.push('/')}
         >
-          SOZAI
+          SOZAI.
         </h1>
       </div>
 

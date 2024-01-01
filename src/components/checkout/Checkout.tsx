@@ -2,14 +2,13 @@
 import { Modal, message } from 'antd';
 import React from 'react';
 import axios from 'axios';
-// import { Elements } from '@stripe/react-stripe-js';
-// import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from './CheckoutForm';
 import Loader from '@/components/Loader';
+import { formatPrice } from '@/lib/utils';
 
-// const stripePromise = loadStripe(
-//   'pk_test_51IYnC0SIR2AbPxU0TMStZwFUoaDZle9yXVygpVIzg36LdpO8aSG8B9j2C0AikiQw2YyCI8n4faFYQI5uG3Nk5EGQ00lCfjXYvZ'
-// );
+const stripePromise = loadStripe('pk_test_ZYjLFheDRmo87WABiETBv6mS00v1hsaMbu');
 
 type CheckoutModalProps = {
   showCheckoutModal: boolean;
@@ -50,7 +49,7 @@ function CheckoutModal({
       title={
         <div className='flex justify-between items-center font-bold text-xl'>
           <span>Checkout</span>
-          <span>Total: ${total}</span>
+          <span>Total: {formatPrice(total)}</span>
         </div>
       }
       open={showCheckoutModal}
@@ -62,11 +61,12 @@ function CheckoutModal({
       {loading && <Loader />}
       <hr className='my-5' />
       <div className='mt-5'>
-        {/* {stripePromise && clientSecret && (
+        {stripePromise && clientSecret && (
           <Elements
+            key={clientSecret}
             stripe={stripePromise}
             options={{
-              clientSecret: clientSecret
+              clientSecret
             }}
           >
             <CheckoutForm
@@ -74,7 +74,7 @@ function CheckoutModal({
               setShowCheckoutModal={setShowCheckoutModal}
             />
           </Elements>
-        )} */}
+        )}
       </div>
     </Modal>
   );
