@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { Modal, Table, message } from 'antd';
 import moment from 'moment';
@@ -44,14 +44,16 @@ function UserOrdersList() {
       );
       setShowCancelModal(false);
       getOrders();
-    } catch (error: any) {
-      message.error(error.response.data.message);
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response) {
+        message.error(error.response.data.message);
+      }
     } finally {
       setStatusUpdateLoading(false);
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (currentUser._id) {
       getOrders();
     }

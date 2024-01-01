@@ -95,6 +95,7 @@ function AdminOrdersList() {
             onChange={(e) => {
               onStatusUpdate(record._id, e.target.value);
             }}
+            className='w-200 h-8'
           >
             <option value='order placed'>Order Placed</option>
             <option value='shipped'>Shipped</option>
