@@ -35,9 +35,8 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    await validateJWT(request);
     const categories = await Category.find()
       .populate('createdBy', 'name')
       .sort({ createdAt: -1 });
