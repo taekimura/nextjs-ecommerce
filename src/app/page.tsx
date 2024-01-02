@@ -8,18 +8,12 @@ import { formatPrice } from '../lib/utils';
 import { Product } from '@/types';
 import Filters from '@/components/Filters';
 
-async function getProducts(searchParams: { search: string; category: string }) {
+async function getProducts(searchParams: any) {
   try {
-    const cookieStore = cookies();
-    const token = cookieStore.get('token')?.value;
     const category = searchParams.category || '';
     const search = searchParams.search || '';
-    const endPoint = `${process.env.DOMAIN}/api/products?category=${category}&search=${search}`;
-    const response = await axios.get(endPoint, {
-      headers: {
-        Cookie: `token=${token}`
-      }
-    });
+    const endPoint = `http://localhost:3000/api/products?category=${category}&search=${search}`;
+    const response = await axios.get(endPoint);
     return response.data.data || [];
   } catch (error: unknown) {
     if (error instanceof Error) {
