@@ -12,7 +12,7 @@ async function getProducts(searchParams: any) {
   try {
     const category = searchParams.category || '';
     const search = searchParams.search || '';
-    const endPoint = `http://localhost:3000/api/products?category=${category}&search=${search}`;
+    const endPoint = `${process.env.DOMAIN}/api/products?category=${category}&search=${search}`;
     const response = await axios.get(endPoint);
     return response.data.data || [];
   } catch (error: unknown) {
