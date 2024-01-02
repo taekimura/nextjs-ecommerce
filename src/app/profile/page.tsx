@@ -8,8 +8,8 @@ import CategoriesList from '@/components/profile/CategoriesList';
 import ProductsList from '@/components/profile/ProductsList';
 import UserOrderList from '@/components/profile/UserOrderList';
 import AdminOrderList from '@/components/profile/AdminOrderList';
-// import PersonalInfo from './components/PersonalInfo';
-// import UsersList from './components/UsersList';
+import PersonalInfo from '@/components/profile/PersonalInfo';
+import UserList from '@/components/profile/UserList';
 
 function Profile() {
   const { currentUser } = useSelector((state: RootState) => state.user);
@@ -37,12 +37,12 @@ function Profile() {
     {
       key: '4',
       label: 'Users',
-      children: 'user list'
+      children: <UserList />
     },
     {
       key: '5',
       label: 'Personal Information',
-      children: 'personal info'
+      children: <PersonalInfo />
     }
   ];
 
@@ -55,7 +55,7 @@ function Profile() {
     {
       key: '2',
       label: 'Personal Information',
-      children: 'personal info'
+      children: <PersonalInfo />
     }
   ];
 
