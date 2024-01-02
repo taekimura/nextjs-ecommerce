@@ -5,7 +5,7 @@ import ProductImages from '@/components/products/ProductImages';
 import ProductActionButtons from '@/components/products/ProductActionButton';
 import Rate from '@/components/products/Rate';
 import { formatPrice } from '@/lib/utils';
-// import ProductReviews from './ProductReviews';
+import ProductReviews from '@/components/products/ProductReviews';
 
 async function getProduct(productid: string) {
   try {
@@ -62,14 +62,17 @@ async function ProductInfo({
                   : 'Out of stock'}
               </span>
             </div>
-            <Rate disabled defaultValue={product.rating || 0} />
+            <Rate
+              style={{ color: 'black' }}
+              disabled
+              defaultValue={product.rating || 0}
+            />
             <ProductActionButtons product={product} />
 
             <div className='pt-10'>
               <hr />
             </div>
-
-            {/* <ProductReviews product={product} /> */}
+            <ProductReviews product={product} />
           </div>
         </div>
       )}

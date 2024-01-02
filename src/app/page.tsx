@@ -6,10 +6,9 @@ import AddToCartButton from '@/components/products/AddToCartButton';
 import Rate from '@/components/products/Rate';
 import { formatPrice } from '../lib/utils';
 import { Product } from '@/types';
-// import Filters from '@/components/Filters';
+import Filters from '@/components/Filters';
 
-async function getProducts(searchParams: any) {
-  console.log(searchParams);
+async function getProducts(searchParams: { search: string; category: string }) {
   try {
     const cookieStore = cookies();
     const token = cookieStore.get('token')?.value;
@@ -30,12 +29,12 @@ async function getProducts(searchParams: any) {
   }
 }
 
-export default async function Home({ searchParams }: { searchParams: any }) {
+export default async function Home({ searchParams }: any) {
   const products = await getProducts(searchParams);
 
   return (
     <div>
-      {/* <Filters /> */}
+      <Filters />
       <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-5 mt-3'>
         {products.map((product: Product) => (
           <div
@@ -59,10 +58,9 @@ export default async function Home({ searchParams }: { searchParams: any }) {
               <div className='flex justify-between items-center'>
                 <Rate
                   disabled
-                  defaultValue={4}
+                  defaultValue={product.rating || 0}
                   style={{ fontSize: '14px', color: 'black' }}
                 />
-                {/* <Rate defaultValue={product.rating || 0} /> */}
                 <span className='text-gray-500 text-xs'>
                   {product.countInStock > 0
                     ? `${product.countInStock} in stock`

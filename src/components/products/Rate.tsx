@@ -12,12 +12,18 @@ function Rate({
   style?: React.CSSProperties;
 }) {
   return (
-    <AntdRate
-      allowHalf
-      disabled={disabled}
-      style={style}
-      defaultValue={defaultValue}
-    />
+    <>
+      {defaultValue ? (
+        <AntdRate
+          allowHalf
+          disabled={disabled}
+          style={style}
+          defaultValue={defaultValue}
+        />
+      ) : (
+        <span className='text-gray-500 text-xs'>No rating yet</span>
+      )}
+    </>
   );
 }
 

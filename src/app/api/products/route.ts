@@ -53,6 +53,7 @@ export async function GET(request: NextRequest) {
     const products = await Product.find(filters)
       .populate('createdBy', 'name')
       .sort({ createdAt: -1 });
+
     return NextResponse.json({
       data: products
     });
