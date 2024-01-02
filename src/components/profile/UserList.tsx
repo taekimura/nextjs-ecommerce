@@ -50,14 +50,14 @@ function UserList() {
     }
   ];
   return (
-    <div>
-      <Table
-        columns={columns}
-        dataSource={users}
-        rowKey='_id'
-        loading={loading}
-      />
-    </div>
+    // <div>
+    <Table
+      columns={columns}
+      dataSource={users}
+      rowKey='_id'
+      loading={loading}
+    />
+    // </div>
   );
 }
 
