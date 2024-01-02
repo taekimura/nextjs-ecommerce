@@ -96,18 +96,18 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
             >
               <h3 className='font-light text-white cursor-pointer'>SOZAI.</h3>
             </div>
-            <div className='flex gap-5 items-center'>
+            <div className='flex gap-5 items-center pt-1'>
               {currentUser._id ? (
                 <>
                   <Badge
-                    style={{ boxShadow: 'none' }}
+                    style={{ boxShadow: 'none', marginTop: '5px' }}
                     count={cartItems.reduce((acc, item) => {
                       return acc + item.quantity;
                     }, 0)}
                     className='cursor-pointer shadow-none'
                   >
                     <i
-                      className='ri-shopping-cart-line text-white text-3xl'
+                      className='ri-shopping-cart-line text-white text-3xl mt-1'
                       onClick={() => router.push('/cart')}
                     ></i>
                   </Badge>
