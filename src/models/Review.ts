@@ -12,12 +12,12 @@ const ReviewSchema = new mongoose.Schema(
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Users',
+      ref: 'users',
       required: true
     },
     product: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Products',
+      ref: 'products',
       required: true
     }
   },
@@ -26,7 +26,7 @@ const ReviewSchema = new mongoose.Schema(
   }
 );
 
-if (mongoose.models && mongoose.models['Reviews'])
-  delete mongoose.models['Reviews'];
+if (mongoose.models && mongoose.models['reviews'])
+  delete mongoose.models['reviews'];
 
-export const Review = mongoose.model('Reviews', ReviewSchema);
+export const Review = mongoose.model('reviews', ReviewSchema);

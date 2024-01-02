@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import AddToCartButton from '@/components/products/AddToCartButton';
@@ -40,6 +39,7 @@ export default async function Home({ searchParams }: any) {
                 <Image
                   src={product.images[0]}
                   alt=''
+                  priority
                   height={150}
                   width={150}
                 />

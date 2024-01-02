@@ -16,14 +16,14 @@ const productSchema = new mongoose.Schema(
     rating: { type: Number, required: false, default: 0 },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Users',
+      ref: 'users',
       required: true
     }
   },
   { timestamps: true }
 );
 
-if (mongoose.models && mongoose.models['Products'])
-  delete mongoose.models['Products'];
+if (mongoose.models && mongoose.models['products'])
+  delete mongoose.models['products'];
 
-export const Product = mongoose.model('Products', productSchema);
+export const Product = mongoose.model('products', productSchema);

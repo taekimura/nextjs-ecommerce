@@ -13,7 +13,7 @@ export const CategorySchema = new mongoose.Schema(
     },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Users',
+      ref: 'users',
       required: true
     }
   },
@@ -23,4 +23,4 @@ export const CategorySchema = new mongoose.Schema(
 );
 
 export const Category =
-  mongoose.models['Categories'] || mongoose.model('Categories', CategorySchema);
+  mongoose.models['categories'] || mongoose.model('categories', CategorySchema);

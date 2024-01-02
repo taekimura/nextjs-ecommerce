@@ -62,7 +62,7 @@ function Filters() {
             className={`cursor-pointer   ${
               selectedCategory === category._id
                 ? 'text-black font-semibold'
-                : 'text-gray-500'
+                : 'text-gray-500 font-light'
             }`}
           >
             <span>{category.name}</span>
