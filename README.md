@@ -8,9 +8,7 @@
   </p>
 </div>
 
-
-<!-- ABOUT THE PROJECT -->
-## About The Project
+<img width="1434" alt="Screenshot 2024-01-02 at 4 11 40 AM" src="https://github.com/taekimura/nextjs-ecommerce/assets/55253319/cbe17988-3938-4052-95aa-bcfdf8ce5de3">
 
 
 ### Built With
@@ -23,8 +21,7 @@
 * Ant Design
 
 
-<!-- GETTING STARTED -->
-## Getting Started
+### Getting Started
 
 1. Clone the repo
    ```sh
