@@ -6,7 +6,7 @@ import LayoutProvider from '@/providers/LayoutProvider';
 import StoreProvider from '@/providers/StoreProvider';
 import './globals.css';
 
-export const openSans = Open_Sans({
+const openSans = Open_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500']
 });
