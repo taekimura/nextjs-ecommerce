@@ -29,6 +29,7 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
       dispatch(SetCurrentUser(response.data.data));
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {
+        dispatch(SetCurrentUser({}));
         console.log(error.response.data.message);
       }
     } finally {
