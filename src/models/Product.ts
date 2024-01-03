@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema(
     description: { type: String, required: true },
     category: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'categories',
+      ref: 'Categories',
       required: true
     },
     price: { type: Number, required: true },
@@ -16,14 +16,14 @@ const productSchema = new mongoose.Schema(
     rating: { type: Number, required: false, default: 0 },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'users',
+      ref: 'Users',
       required: true
     }
   },
   { timestamps: true }
 );
 
-if (mongoose.models && mongoose.models['products'])
-  delete mongoose.models['products'];
+if (mongoose.models && mongoose.models['Products'])
+  delete mongoose.models['Products'];
 
-export const Product = mongoose.model('products', productSchema);
+export const Product = mongoose.model('Products', productSchema);

@@ -5,7 +5,7 @@ const OrderSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'users'
+      ref: 'Users'
     },
     items: [],
     paymentStatus: {
@@ -33,7 +33,7 @@ const OrderSchema = new mongoose.Schema(
     timestamps: true
   }
 );
-if (mongoose.models && mongoose.models['orders'])
-  delete mongoose.models['orders'];
+if (mongoose.models && mongoose.models['Orders'])
+  delete mongoose.models['Orders'];
 
-export const Order = mongoose.model('orders', OrderSchema);
+export const Order = mongoose.model('Orders', OrderSchema);
