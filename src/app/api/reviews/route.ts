@@ -35,7 +35,6 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    await validateJWT(request);
     const searchParams = request.nextUrl.searchParams;
     const product = searchParams.get('product');
     const reviews = await Review.find({ product })

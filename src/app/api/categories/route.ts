@@ -37,9 +37,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
-    const categories = await Category.find()
-      .populate('createdBy', 'name')
-      .sort({ createdAt: -1 });
+    const categories = await Category.find().sort({ createdAt: -1 });
     return NextResponse.json({
       data: categories
     });

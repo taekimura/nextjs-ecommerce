@@ -16,7 +16,6 @@ export async function GET(
   }
 ) {
   try {
-    await validateJWT(request);
     const order = await Order.findById(params.orderid).populate(
       'user',
       'name email'
