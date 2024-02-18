@@ -54,21 +54,23 @@ function Filters() {
 
   return (
     <div className='flex flex-col gap-5'>
-      <div className='flex gap-10 bg-gray-300 py-2 px-5'>
-        {categories.map((category: Category) => (
-          <div
-            key={category._id}
-            onClick={() => onSelectCategory(category)}
-            className={`cursor-pointer   ${
-              selectedCategory === category._id
-                ? 'text-black font-semibold'
-                : 'text-gray-500 font-light'
-            }`}
-          >
-            <span>{category.name}</span>
-          </div>
-        ))}
-      </div>
+      {categories.length > 0 && (
+        <div className='flex gap-10 bg-gray-300 py-2 px-5'>
+          {categories.map((category: Category) => (
+            <div
+              key={category._id}
+              onClick={() => onSelectCategory(category)}
+              className={`cursor-pointer   ${
+                selectedCategory === category._id
+                  ? 'text-black font-semibold'
+                  : 'text-gray-500 font-light'
+              }`}
+            >
+              <span>{category.name}</span>
+            </div>
+          ))}
+        </div>
+      )}
       <Input
         type='text'
         style={{ borderRadius: 0, marginBottom: '8px' }}

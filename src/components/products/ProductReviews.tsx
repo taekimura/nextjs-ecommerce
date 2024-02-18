@@ -1,16 +1,21 @@
 'use client';
 import React from 'react';
 import axios from 'axios';
-import { Button, Modal, Rate, message, Form, Input } from 'antd';
+import { useRouter, usePathname } from 'next/navigation';
+import { Button, Modal, Rate, message } from 'antd';
 import { Product } from '@/types';
-import { getInputFieldRule } from '@/lib/validations';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 
 function ProductReviews({ product }: { product: Product }) {
+  const router = useRouter();
+  const pathname = usePathname();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [comment, setComment] = React.useState<string>('');
   const [rating, setRating] = React.useState<number>(0);
   const [showReviewForm, setShowReviewForm] = React.useState(false);
   const [reviews, setReviews] = React.useState([]);
+  const { currentUser } = useSelector((state: RootState) => state.user);
 
   const getReviews = async () => {
     try {
@@ -56,9 +61,13 @@ function ProductReviews({ product }: { product: Product }) {
         <Button
           type='primary'
           onClick={() => {
-            setComment('');
-            setRating(0);
-            setShowReviewForm(true);
+            if (currentUser._id) {
+              setComment('');
+              setRating(0);
+              setShowReviewForm(true);
+            } else {
+              router.push(`/login?redirect=/${pathname}`);
+            }
           }}
         >
           Write a review

@@ -3,7 +3,7 @@ import React from 'react';
 import { Button, Form, Input, message } from 'antd';
 import axios from 'axios';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
   getInputFieldRule,
   EMAIL_REGEX,
@@ -18,13 +18,22 @@ interface userType {
 
 function Login() {
   const router = useRouter();
+  const redirectParam = useSearchParams().get('redirect');
   const [loading, setLoading] = React.useState(false);
 
   const onLogin = async (values: userType) => {
     try {
       setLoading(true);
       await axios.post('/api/auth/login', values);
-      router.push('/');
+      if (redirectParam) {
+        const locationOrigin =
+          typeof window !== 'undefined' && window.location.origin
+            ? window.location.origin
+            : '';
+        router.replace(`${locationOrigin}${redirectParam}`);
+      } else {
+        router.replace('/');
+      }
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {
         message.error(error.response.data.message);
