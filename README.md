@@ -10,7 +10,7 @@
 
 <img width="1000" alt="Screenshot 2024-01-02 at 4 11 40 AM" src="https://github.com/taekimura/nextjs-ecommerce/assets/55253319/cbe17988-3938-4052-95aa-bcfdf8ce5de3">
 
-### Admin
+#### Admin
 <img width="1000" alt="Screenshot 2024-02-18 at 13 57 53" src="https://github.com/taekimura/nextjs-ecommerce/assets/55253319/2f83c800-1dbe-4da9-abf1-3dcda3a75fb4">
 
 
