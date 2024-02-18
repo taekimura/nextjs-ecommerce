@@ -23,7 +23,6 @@ function Filters() {
         }
       ];
       tempCategories.push(...response.data.data);
-      console.log(tempCategories);
       setCategories(tempCategories);
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -55,7 +54,7 @@ function Filters() {
   return (
     <div className='flex flex-col gap-5'>
       {categories.length > 0 && (
-        <div className='flex gap-10 bg-gray-300 py-2 px-5'>
+        <div className='flex flex-row flex-wrap gap-2 md:gap-8 bg-gray-300 py-2 px-5'>
           {categories.map((category: Category) => (
             <div
               key={category._id}
