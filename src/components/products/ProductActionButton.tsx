@@ -17,7 +17,7 @@ function ProductActionButtons({ product }: { product: Product }) {
     <div className='flex gap-5 mt-5'>
       <Button
         type='default'
-        disabled={product.countInStock === 0}
+        disabled={product.countInStock <= 0}
         onClick={() => {
           if (currentUser._id) {
             dispatch(AddProductToCart(product));
@@ -31,7 +31,7 @@ function ProductActionButtons({ product }: { product: Product }) {
       </Button>
       <Button
         type='primary'
-        disabled={product.countInStock === 0}
+        disabled={product.countInStock <= 0}
         onClick={() => {
           if (currentUser._id) {
             dispatch(AddProductToCart(product));

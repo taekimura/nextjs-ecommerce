@@ -25,7 +25,7 @@ function AddToCartButton({ product }: { product: Product }) {
             router.push('/login');
           }
         }}
-        disabled={product.countInStock === 0}
+        disabled={product.countInStock <= 0}
       >
         Add To Cart
       </Button>

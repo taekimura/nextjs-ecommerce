@@ -66,7 +66,10 @@ export default async function Home({ searchParams }: any) {
               <h2 className='text-base font-bold'>
                 {formatPrice(product.price)}
               </h2>
-              <AddToCartButton product={product} />
+              <AddToCartButton
+                product={product}
+                disabled={product.countInStock === 0}
+              />
             </div>
           </div>
         ))}
