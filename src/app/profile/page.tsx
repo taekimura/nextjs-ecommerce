@@ -60,7 +60,7 @@ function Profile() {
   ];
 
   return (
-    <div>
+    <div className='w-full overflow-auto'>
       {currentUser.isAdmin && (
         <Tabs
           defaultActiveKey='1'

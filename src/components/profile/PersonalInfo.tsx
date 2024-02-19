@@ -27,9 +27,9 @@ function PersonalInfo() {
   };
 
   return (
-    <div>
+    <div className='w-full'>
       <Form
-        className='w-[400px] flex flex-col gap-5'
+        className='w-max-[400px] flex flex-col gap-5'
         layout='vertical'
         onFinish={onSave}
         initialValues={{

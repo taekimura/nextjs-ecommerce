@@ -37,14 +37,14 @@ function Cart() {
         <div className='grid grid-cols-1 xl:grid-cols-3 text-gray-700 gap-0 md:gap-10'>
           <div className='col-span-2 flex flex-col gap-5'>
             <span className='text-2xl font-semibold'>My Cart</span>
-            <div className='hidden md:grid grid-cols-7 gap-10'>
+            <div className='hidden xl:grid grid-cols-7 gap-10'>
               <span className='col-span-4'>Product</span>
               <span className='col-span-1'>Price</span>
               <span className='col-span-1'>Quantity</span>
               <span className='col-span-1'>Total</span>
             </div>
 
-            <div className='col-span-7 hidden md:block pt-4'>
+            <div className='col-span-7 hidden xl:block pt-4'>
               <hr />
             </div>
 
@@ -117,7 +117,7 @@ function Cart() {
             ))}
           </div>
 
-          <div className='col-span-1 border border-gray-400 border-solid p-5'>
+          <div className='col-span-1 border border-gray-400 border-solid p-5 sm:mt-4'>
             <h1 className='text-xl font-semibold'>Amount Summary</h1>
             <hr className='border border-gray-400 border-dashed' />
             <div className='flex flex-col gap-2 mt-5'>
