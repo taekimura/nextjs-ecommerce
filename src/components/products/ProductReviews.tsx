@@ -56,7 +56,7 @@ function ProductReviews({ product }: { product: Product }) {
 
   return (
     <div className='mt-5'>
-      <div className='flex justify-between items-center'>
+      <div className='flex flex-row flex-wrap justify-between items-center'>
         <h1 className='text-2xl font-semibold'>Reviews</h1>
         <Button
           type='primary'
@@ -74,7 +74,7 @@ function ProductReviews({ product }: { product: Product }) {
         </Button>
       </div>
       {reviews.length === 0 && (
-        <div className='text-gray-500'>
+        <div className='text-gray-500 mt-5'>
           <span>No reviews yet. Be the first to review this product.</span>
         </div>
       )}

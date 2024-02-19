@@ -14,7 +14,7 @@ function ProductActionButtons({ product }: { product: Product }) {
   const { currentUser } = useSelector((state: RootState) => state.user);
 
   return (
-    <div className='flex gap-5 mt-5'>
+    <div className='flex flex-row flex-wrap gap-5 mt-5'>
       <Button
         type='default'
         disabled={product.countInStock <= 0}

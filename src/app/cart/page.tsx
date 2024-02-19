@@ -34,7 +34,7 @@ function Cart() {
   return (
     <div className='mt-10'>
       {isClient && cartItems.length > 0 ? (
-        <div className='grid grid-cols-1 xl:grid-cols-3 text-gray-700 gap-10'>
+        <div className='grid grid-cols-1 xl:grid-cols-3 text-gray-700 gap-0 md:gap-10'>
           <div className='col-span-2 flex flex-col gap-5'>
             <span className='text-2xl font-semibold'>My Cart</span>
             <div className='hidden md:grid grid-cols-7 gap-10'>
@@ -44,7 +44,7 @@ function Cart() {
               <span className='col-span-1'>Total</span>
             </div>
 
-            <div className='col-span-7 hidden md:block'>
+            <div className='col-span-7 hidden md:block pt-4'>
               <hr />
             </div>
 

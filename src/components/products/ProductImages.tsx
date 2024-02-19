@@ -27,7 +27,9 @@ function ProductImages({ product }: { product: Product }) {
         ))}
       </div>
 
-      <Image src={selectedImage} alt='' height={400} width={400} />
+      <div className='max-w-[400px] max-h-[400px]'>
+        <img className='w-full' src={selectedImage} alt='' />
+      </div>
     </div>
   );
 }
