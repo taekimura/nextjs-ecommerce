@@ -21,6 +21,7 @@
 * Tailwind CSS
 * MongoDB
 * Firebase
+* Stripe
 * Ant Design
 
 
