@@ -27,10 +27,10 @@ function CategoryForm({
       setLoading(true);
       if (selectedCategory) {
         await axios.put(`/api/categories/${selectedCategory._id}`, values);
-        message.success('Category updated successfully');
+        message.success('Category updated successfully.');
       } else {
         await axios.post('/api/categories', values);
-        message.success('Category added successfully');
+        message.success('Category added successfully.');
       }
       setShowCategoryForm(false);
       setSelectedCategory(null);

@@ -1,16 +1,12 @@
 'use client';
 import React from 'react';
-import { useRouter } from 'next/navigation';
 import { Product } from '@/types';
 import { Button, message } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
+import { useDispatch } from 'react-redux';
 import { AddProductToCart } from '@/redux/cartSlice';
 
 function AddToCartButton({ product }: { product: Product }) {
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state: RootState) => state.user);
-  const router = useRouter();
 
   return (
     <div>
@@ -18,12 +14,8 @@ function AddToCartButton({ product }: { product: Product }) {
         type='primary'
         style={{ fontSize: '12px' }}
         onClick={() => {
-          if (currentUser._id) {
-            dispatch(AddProductToCart(product));
-            message.success('Added to cart');
-          } else {
-            router.push('/login');
-          }
+          dispatch(AddProductToCart(product));
+          message.success('Added to cart.');
         }}
         disabled={product.countInStock <= 0}
       >

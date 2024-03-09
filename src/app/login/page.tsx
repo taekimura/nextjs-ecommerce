@@ -38,7 +38,7 @@ function Login() {
       if (axios.isAxiosError(error) && error.response) {
         message.error(error.response.data.message);
       } else {
-        message.error('Failed to login');
+        message.error('Failed to login. Please try again later.');
       }
     } finally {
       setLoading(false);

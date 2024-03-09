@@ -19,7 +19,7 @@ function AddProduct() {
       values.images = imagesUrls;
 
       await axios.post('/api/products', values);
-      message.success('Product created successfully');
+      message.success('Product created successfully.');
       router.push('/profile?id=1');
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {

@@ -38,7 +38,7 @@ function ProductsList() {
     try {
       setDeleteLoading(true);
       await axios.delete(`/api/products/${productId}`);
-      message.success('Product deleted successfully');
+      message.success('Product deleted successfully.');
       getProducts();
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {

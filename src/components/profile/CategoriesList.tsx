@@ -36,7 +36,7 @@ function CategoriesList() {
     try {
       setLoadingForDelete(true);
       await axios.delete(`/api/categories/${id}`);
-      message.success('Category deleted successfully');
+      message.success('Category deleted successfully.');
       setSelectedCategory(null);
       getCategories();
     } catch (error: unknown) {

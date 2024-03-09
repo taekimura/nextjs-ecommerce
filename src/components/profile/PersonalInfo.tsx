@@ -16,7 +16,7 @@ function PersonalInfo() {
       const endPoint = `/api/users/${currentUser._id}`;
       const response = await axios.put(endPoint, values);
       dispatch(SetCurrentUser(response.data));
-      message.success('User updated successfully');
+      message.success('User updated successfully.');
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {
         message.error(error.response.data.message);

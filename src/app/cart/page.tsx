@@ -1,22 +1,27 @@
 'use client';
-import {
-  CartState,
-  EditProductInCart,
-  RemoveProductFromCart
-} from '@/redux/cartSlice';
 import React from 'react';
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 import { Button } from 'antd';
 import Checkout from '@/components/checkout/Checkout';
 import { RootState } from '@/redux/store';
+import {
+  CartState,
+  EditProductInCart,
+  RemoveProductFromCart
+} from '@/redux/cartSlice';
 import { formatPrice } from '@/lib/utils';
 
 const ShippingFee = 50;
 
 function Cart() {
+  const router = useRouter();
+  const pathname = usePathname();
   const [showCheckoutModal, setShowCheckoutModal] = React.useState(false);
   const [isClient, setIsClient] = React.useState(false);
+  const { currentUser } = useSelector((state: RootState) => state.user);
   const { cartItems }: CartState = useSelector(
     (state: RootState) => state.cart
   );
@@ -62,7 +67,12 @@ function Cart() {
                     className='border p-2 border-gray-300 border-solid hidden xl:block'
                   />
                   <div className='flex flex-col gap-2'>
-                    <span className='text-sm'>{item.name}</span>
+                    <Link
+                      href={`/products/${item._id}`}
+                      className='text-sm text-gray-700'
+                    >
+                      {item.name}
+                    </Link>
                     <span
                       className='text-xs underline text-red-700 cursor-pointer'
                       onClick={() => {
@@ -151,7 +161,11 @@ function Cart() {
                 type='primary'
                 className='mt-10'
                 onClick={() => {
-                  setShowCheckoutModal(true);
+                  if (currentUser._id) {
+                    setShowCheckoutModal(true);
+                  } else {
+                    router.push(`/login?redirect=/${pathname}`);
+                  }
                 }}
               >
                 Proceed to Checkout

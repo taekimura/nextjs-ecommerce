@@ -50,7 +50,7 @@ function CheckoutForm({
         throw result.error;
       }
 
-      message.success('Payment successful');
+      message.success('Payment successful.');
 
       const orderPayload = {
         items: cartItems,
@@ -62,7 +62,7 @@ function CheckoutForm({
       };
       await axios.post('/api/orders/place_order', orderPayload);
       dispatch(ClearCart());
-      message.success('Order placed successfully');
+      message.success('Order placed successfully.');
       router.push('/profile');
     } catch (error: unknown) {
       if (error instanceof Error) {

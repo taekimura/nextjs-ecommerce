@@ -24,13 +24,13 @@ function Register() {
     try {
       setLoading(true);
       await axios.post('/api/auth/register', values);
-      message.success('Registration successful. please login to continue.');
+      message.success('Successfully registered. Please login to continue.');
       router.push('/login');
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {
         message.error(error.response.data.message);
       } else {
-        message.error('Failed to login');
+        message.error('Failed to login. Please try again later.');
       }
     } finally {
       setLoading(false);

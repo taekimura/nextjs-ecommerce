@@ -1,4 +1,5 @@
 'use client';
+
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -16,6 +17,7 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
   const { cartItems }: CartState = useSelector(
     (state: RootState) => state.cart
   );
+
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
   const pathname = usePathname();
@@ -58,7 +60,7 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
       if (axios.isAxiosError(error) && error.response) {
         message.error(error.response.data.message);
       } else {
-        message.error('Failed to logout');
+        message.error('Failed to logout.');
       }
     } finally {
       setLoading(false);
@@ -98,7 +100,7 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
               <h3 className='font-light text-white cursor-pointer'>SOZAI.</h3>
             </div>
             <div className='flex gap-5 items-center pt-1'>
-              {currentUser._id ? (
+              {!loading && (
                 <>
                   <Badge
                     style={{ boxShadow: 'none', marginTop: '5px' }}
@@ -112,16 +114,18 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
                       onClick={() => router.push('/cart')}
                     ></i>
                   </Badge>
-                  <Popover content={content} trigger='click'>
-                    <div className='flex h-8 w-8 bg-white p-2 rounded-full items-center justify-center cursor-pointer'>
-                      <span>{currentUser.name[0]}</span>
-                    </div>
-                  </Popover>
+                  {currentUser._id ? (
+                    <Popover content={content} trigger='click'>
+                      <div className='flex h-8 w-8 bg-white p-2 rounded-full items-center justify-center cursor-pointer'>
+                        <span>{currentUser.name[0]}</span>
+                      </div>
+                    </Popover>
+                  ) : (
+                    <Link href='/login' className='text-white no-underline'>
+                      Login
+                    </Link>
+                  )}
                 </>
-              ) : (
-                <Link href='/login' className='text-white no-underline'>
-                  Login
-                </Link>
               )}
             </div>
           </div>

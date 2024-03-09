@@ -23,7 +23,6 @@ function UserOrdersList() {
       setLoading(true);
       const endPoint = `/api/orders?user=${currentUser._id}`;
       const response = await axios.get(endPoint);
-      console.log(response.data);
       setOrders(response.data);
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -39,9 +38,7 @@ function UserOrdersList() {
       setStatusUpdateLoading(true);
       const endPoint = `/api/orders/${orderId}`;
       await axios.put(endPoint, { orderStatus: status });
-      message.success(
-        'Your order has been cancelled successfully , Thank you.'
-      );
+      message.success('Your order has been cancelled successfully. Thank you.');
       setShowCancelModal(false);
       getOrders();
     } catch (error: unknown) {

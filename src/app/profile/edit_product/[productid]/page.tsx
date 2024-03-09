@@ -26,7 +26,7 @@ function EditProduct({ params }: { params: { productid: string } }) {
       const newAndExistingImages = [...existingImages, ...newImages];
       values.images = newAndExistingImages;
       await axios.put(`/api/products/${params.productid}`, values);
-      message.success('Product updated successfully');
+      message.success('Product updated successfully.');
       router.refresh();
       router.back();
     } catch (error: unknown) {

@@ -34,7 +34,7 @@ function AdminOrdersList() {
       setStatusUpdateLoading(true);
       const endPoint = `/api/orders/${orderId}`;
       await axios.put(endPoint, { orderStatus: status });
-      message.success('Order status updated successfully');
+      message.success('Order status updated successfully.');
       getOrders();
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -50,7 +50,7 @@ function AdminOrdersList() {
       setStatusUpdateLoading(true);
       const endPoint = `/api/stripe_refund`;
       await axios.post(endPoint, { orderId, transactionId });
-      message.success('Refund issued successfully');
+      message.success('Refund issued successfully.');
       getOrders();
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {
