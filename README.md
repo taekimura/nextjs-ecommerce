@@ -16,6 +16,7 @@
 
 ### Built With
 
+* Node v20.7.0
 * Next.js
 * Typescript
 * Tailwind CSS
