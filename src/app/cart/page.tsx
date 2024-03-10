@@ -32,7 +32,7 @@ function Cart() {
   const total = subTotal + ShippingFee;
   const dispatch = useDispatch();
   const isModalParam = useSearchParams().has('modal');
-  console.log(isModalParam);
+
   React.useEffect(() => {
     setIsClient(true);
   }, []);

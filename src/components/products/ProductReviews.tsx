@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import axios from 'axios';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { Button, Modal, Rate, message } from 'antd';
 import { Product } from '@/types';
 import { useSelector } from 'react-redux';
@@ -10,12 +10,19 @@ import { RootState } from '@/redux/store';
 function ProductReviews({ product }: { product: Product }) {
   const router = useRouter();
   const pathname = usePathname();
+  const isModalParam = useSearchParams().has('modal');
   const [loading, setLoading] = React.useState<boolean>(false);
   const [comment, setComment] = React.useState<string>('');
   const [rating, setRating] = React.useState<number>(0);
   const [showReviewForm, setShowReviewForm] = React.useState(false);
   const [reviews, setReviews] = React.useState([]);
   const { currentUser } = useSelector((state: RootState) => state.user);
+
+  React.useEffect(() => {
+    if (isModalParam) {
+      setShowReviewForm(true);
+    }
+  }, [isModalParam, setShowReviewForm]);
 
   const getReviews = async () => {
     try {
@@ -66,7 +73,7 @@ function ProductReviews({ product }: { product: Product }) {
               setRating(0);
               setShowReviewForm(true);
             } else {
-              router.push(`/login?redirect=${pathname}`);
+              router.push(`/login?redirect=${pathname}?modal`);
             }
           }}
         >
@@ -107,7 +114,10 @@ function ProductReviews({ product }: { product: Product }) {
 
       <Modal
         open={showReviewForm}
-        onCancel={() => setShowReviewForm(false)}
+        onCancel={() => {
+          setShowReviewForm(false);
+          router.replace(pathname);
+        }}
         title={
           <div className='flex justify-between items-center uppercase'>
             <h1 className='text-2xl font-semibold'>Write a review</h1>
