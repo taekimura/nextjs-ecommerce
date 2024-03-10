@@ -66,7 +66,7 @@ function ProductReviews({ product }: { product: Product }) {
               setRating(0);
               setShowReviewForm(true);
             } else {
-              router.push(`/login?redirect=/${pathname}`);
+              router.push(`/login?redirect=${pathname}`);
             }
           }}
         >

@@ -38,10 +38,14 @@ function CheckoutForm({
       if (!stripe || !elements) {
         throw new Error("Stripe.js hasn't loaded yet.");
       }
+      const locationOrigin =
+        typeof window !== 'undefined' && window.location.origin
+          ? window.location.origin
+          : '';
       const result = await stripe.confirmPayment({
         elements,
         confirmParams: {
-          return_url: 'http://localhost:3000/cart'
+          return_url: `${locationOrigin}/cart`
         },
         redirect: 'if_required'
       });
@@ -90,7 +94,10 @@ function CheckoutForm({
             htmlType='button'
             className='mt-5'
             block
-            onClick={() => setShowCheckoutModal(false)}
+            onClick={() => {
+              setShowCheckoutModal(false);
+              router.replace('/cart');
+            }}
           >
             Cancel
           </Button>

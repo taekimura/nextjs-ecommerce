@@ -92,7 +92,7 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
       {loading && <Loader />}
       {isPrivatePage && (
         <>
-          <div className='bg-primary px-5 flex justify-between items-center'>
+          <div className='bg-primary px-5 flex justify-between items-center fixed w-full z-50'>
             <div
               className='flex gap-2 cursor-pointer'
               onClick={() => router.push('/')}
@@ -129,7 +129,7 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
               )}
             </div>
           </div>
-          <div className='p-5'>{children}</div>
+          <div className='pt-[80px] p-5'>{children}</div>
         </>
       )}
       {!isPrivatePage && children}

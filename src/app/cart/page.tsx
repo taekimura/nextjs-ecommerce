@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 import { Button } from 'antd';
@@ -31,10 +31,17 @@ function Cart() {
   );
   const total = subTotal + ShippingFee;
   const dispatch = useDispatch();
-
+  const isModalParam = useSearchParams().has('modal');
+  console.log(isModalParam);
   React.useEffect(() => {
     setIsClient(true);
   }, []);
+
+  React.useEffect(() => {
+    if (isModalParam) {
+      setShowCheckoutModal(true);
+    }
+  }, [isModalParam, setShowCheckoutModal]);
 
   return (
     <div className='mt-10'>
@@ -164,7 +171,7 @@ function Cart() {
                   if (currentUser._id) {
                     setShowCheckoutModal(true);
                   } else {
-                    router.push(`/login?redirect=/${pathname}`);
+                    router.push(`/login?redirect=${pathname}?modal`);
                   }
                 }}
               >
