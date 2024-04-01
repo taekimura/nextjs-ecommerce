@@ -20,6 +20,7 @@
 * Next.js
 * Typescript
 * Tailwind CSS
+* Redux
 * MongoDB
 * Firebase
 * Stripe
