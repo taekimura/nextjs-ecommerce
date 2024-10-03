@@ -35,13 +35,14 @@ export default async function Home({ searchParams }: any) {
             className='px-4 py-4 flex flex-col gap-1 border border-solid border-gray-300'
           >
             <Link href={`/products/${product._id}`} className='no-underline'>
-              <div className='text-center'>
+              <div className='flex justify-center items-center'>
                 <Image
                   src={product.images[0]}
                   alt=''
                   priority
                   height={150}
                   width={150}
+                  // onLoad={handleImageLoad}
                 />
               </div>
               <div className='flex flex-col mt-5'>
